@@ -9,7 +9,7 @@ WORKDIR "/app"
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/yarn.lock ./yarn.lock
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/app.development.local ./app.development.local
+COPY --from=builder /app/.env.development.local ./.env.development.local
 ENV NODE_ENV=development
 RUN yarn install --frozen-lockfile --production
 #COPY --from=builder /app/node_modules ./node_modules

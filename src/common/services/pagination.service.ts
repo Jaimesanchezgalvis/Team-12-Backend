@@ -3,6 +3,7 @@ import { IPaginationOptions, paginate } from 'nestjs-typeorm-paginate';
 import {
   IPagination, IPaginationTypeOrm,
 } from '../interfaces/pagination.interface';
+import { FindManyOptions, FindOptionsWhere } from 'typeorm';
 
 @Injectable()
 export class PaginationService {
@@ -15,7 +16,7 @@ export class PaginationService {
       skip: pagination.page - 1,
     };
   }
-  async paginate<T>(repository: any, options: IPaginationOptions, params = {}){
+  async paginate<T>(repository: any, options: IPaginationOptions, params: FindOptionsWhere<T> | FindManyOptions<T>){
       return paginate<T>(repository, options, params);
     }
 }

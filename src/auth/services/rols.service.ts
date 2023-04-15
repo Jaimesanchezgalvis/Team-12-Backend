@@ -18,6 +18,7 @@ export class RolsService {
     return this.paginationService.paginate<Rol>(
       this.rolsRepository,
       pagination,
+      {},
     );
   }
   async findOne(id: number): Promise<Rol> {
