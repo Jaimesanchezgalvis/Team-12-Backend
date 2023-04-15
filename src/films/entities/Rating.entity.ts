@@ -1,6 +1,6 @@
 import { AbstractEntity } from '@app/common/entities/AbstractEntity.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { Film } from '@app/films/entities/film.entity';
+import { Film } from '@app/films/entities/Film.entity';
 import { User } from '@app/auth/entities/User.entity';
 
 @Entity('ratings')
