@@ -15,9 +15,10 @@ export class FilmsService {
     private readonly filmRepository: Repository<Film>,
   ) {}
 
-  findAll(page: IPagination) {
+  findAll(page: IPagination, where: object) {
     return this.paginationService.paginate<Film>(this.filmRepository, page, {
       relations: ['category', 'gender', 'user'],
+      where,
     });
   }
 
@@ -27,5 +28,4 @@ export class FilmsService {
       relations: ['category', 'gender', 'user'],
     });
   }
-
 }

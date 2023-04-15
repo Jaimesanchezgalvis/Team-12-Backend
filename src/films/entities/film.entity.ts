@@ -7,6 +7,14 @@ import { AbstractEntity } from '@app/common/entities/AbstractEntity.entity';
 
 @Entity('films')
 export class Film extends AbstractEntity {
+  static fieldsForQuery = [
+    'director',
+    'title',
+    'sinopsis',
+    'language',
+    'gender.name',
+    'category.name',
+  ];
   @Column({ length: 200 })
   title: string;
   @Column({ nullable: true, length: 200 })
