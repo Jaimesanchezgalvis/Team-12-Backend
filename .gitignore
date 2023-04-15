@@ -35,3 +35,5 @@ ormconfig.json
 !.vscode/launch.json
 !.vscode/extensions.json
 .env.development.local
+yarn.lock
+package-lock.json
