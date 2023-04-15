@@ -10,7 +10,7 @@ import {
 import { hash } from 'bcryptjs';
 import { Rol } from '@app/auth/entities/Rol.entity';
 import { AbstractEntity } from '@app/common/entities/AbstractEntity.entity';
-import { Rating } from '@app/films/entities/Ratings,entity';
+import { Rating } from '@app/films/entities/Rating.entity';
 import { Film } from '@app/films/entities/Film.entity';
 
 @Entity('users')
@@ -43,6 +43,7 @@ export class User extends AbstractEntity {
     onDelete: 'CASCADE',
   })
   rol: Rol;
+
   @OneToMany((_) => Rating, (rating) => rating.user)
   ratings: Rating[];
 

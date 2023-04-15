@@ -1,6 +1,6 @@
 import { AbstractEntity } from '@app/common/entities/AbstractEntity.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { Film } from './Film.entity';
+import { Film } from '@app/films/entities/Film.entity';
 @Entity('genders')
 export class Gender extends AbstractEntity {
   @Column({ length: 100 })

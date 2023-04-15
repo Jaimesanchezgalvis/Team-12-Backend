@@ -16,8 +16,8 @@ services:
     restart: always
     expose:
       - "3000"
-    environment:
-      PORT: 3000
+    env_file:
+      - ".env.development.local"
 
 volumes:
   postgres-data:

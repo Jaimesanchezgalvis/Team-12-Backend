@@ -6,7 +6,8 @@
 This is a challenge for project
 
 ## Docker commands
-`docker rm $(docker ps -aq) && docker system prune -f`
+`docker rm $(docker ps -aq) && docker system prune -f` Remueve todos los contenedores
+`sudo docker rmi -f $(docker images -a -q)` Remueve todas las imagenes
 
 ## Documentation at
 
