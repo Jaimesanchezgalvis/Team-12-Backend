@@ -5,9 +5,22 @@ import { CategoriesController } from './controllers/categories.controller';
 import { GendersController } from './controllers/genders.controller';
 import { GendersService } from './services/genders.service';
 import { CategoriesService } from './services/categories.service';
+import { RatingsController } from './controllers/ratings.controller';
+import { RatingsService } from './services/ratings.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Category } from './entities/Category.entity';
+import { Film } from './entities/Film.entity';
+import { Gender } from './entities/Gender.entity';
+import { Rating } from './entities/Ratings,entity';
 
 @Module({
-  controllers: [FilmsController, CategoriesController, GendersController],
-  providers: [FilmsService, GendersService, CategoriesService],
+  imports: [TypeOrmModule.forFeature([Category, Film, Gender, Rating])],
+  controllers: [
+    FilmsController,
+    CategoriesController,
+    GendersController,
+    RatingsController,
+  ],
+  providers: [FilmsService, GendersService, CategoriesService, RatingsService],
 })
 export class FilmsModule {}

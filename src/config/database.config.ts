@@ -4,6 +4,10 @@ import path = require('path');
 import { DATABASE_CONFIG, DEV_KEY } from './constants.config';
 import { Rol } from '../auth/entities/Rol.entity';
 import { User } from '../auth/entities/User.entity';
+import { Category } from '@app/films/entities/Category.entity';
+import { Film } from '@app/films/entities/Film.entity';
+import { Rating } from '@app/films/entities/Ratings,entity';
+import { Gender } from '@app/films/entities/Gender.entity';
 
 export default registerAs(DATABASE_CONFIG, (): TypeOrmModuleOptions & any => {
   return {
@@ -19,7 +23,7 @@ export default registerAs(DATABASE_CONFIG, (): TypeOrmModuleOptions & any => {
     entities:
       process.env.NODE_ENV === DEV_KEY
         ? ['dist/**/entities/*.entity.{js,ts}']
-        : [Rol, User],
+        : [Rol, User, Category, Film, Rating, Gender],
     migrationsRun: false,
     seeds: ['dist/**/seeds/*.js'],
     migrations: [path.resolve(__dirname + './../migrations/*.js')],

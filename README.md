@@ -4,3 +4,6 @@
 
 ## Challenge Films for try catch
 This is a challenge for project
+
+##Docker commands
+`docker rm $(docker ps -aq) && docker system prune -f`
