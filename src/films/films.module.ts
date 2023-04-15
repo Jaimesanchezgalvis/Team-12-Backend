@@ -11,7 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Category } from './entities/Category.entity';
 import { Film } from './entities/Film.entity';
 import { Gender } from './entities/Gender.entity';
-import { Rating } from './entities/Ratings,entity';
+import { Rating } from './entities/Rating.entity';
 import { CommonModule } from '@app/common/common.module';
 
 @Module({

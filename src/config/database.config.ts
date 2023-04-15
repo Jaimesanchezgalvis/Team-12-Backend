@@ -6,7 +6,7 @@ import { Rol } from '../auth/entities/Rol.entity';
 import { User } from '../auth/entities/User.entity';
 import { Category } from '@app/films/entities/Category.entity';
 import { Film } from '@app/films/entities/Film.entity';
-import { Rating } from '@app/films/entities/Ratings,entity';
+import { Rating } from '@app/films/entities/Rating.entity';
 import { Gender } from '@app/films/entities/Gender.entity';
 
 export default registerAs(DATABASE_CONFIG, (): TypeOrmModuleOptions & any => {
