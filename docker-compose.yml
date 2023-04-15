@@ -14,11 +14,12 @@ services:
   app:
     build: .
     restart: always
-    expose:
-      - "3000"
+    ports:
+      - "80:80"
     env_file:
       - ".env.development.local"
-
+    networks:
+     - br0
 volumes:
   postgres-data:
 networks:
