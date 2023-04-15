@@ -6,37 +6,24 @@ import {
   Patch,
   Param,
   Delete,
+  ParseIntPipe,
+  Req,
+  Query,
 } from '@nestjs/common';
 import { FilmsService } from '../services/films.service';
-import { CreateFilmDto } from '../dto/create-film.dto';
-import { UpdateFilmDto } from '../dto/update-film.dto';
+import { PaginationPipe } from '@app/common/pipes/pagination.pipe';
+import { IPagination } from '@app/common/interfaces/pagination.interface';
 
 @Controller('films')
 export class FilmsController {
   constructor(private readonly filmsService: FilmsService) {}
 
-  @Post()
-  create(@Body() createFilmDto: CreateFilmDto) {
-    return this.filmsService.create(createFilmDto);
-  }
-
   @Get()
-  findAll() {
-    return this.filmsService.findAll();
+  findAll(@Query(PaginationPipe) pagination: IPagination): any {
+    return this.filmsService.findAll(pagination);
   }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.filmsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFilmDto: UpdateFilmDto) {
-    return this.filmsService.update(+id, updateFilmDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.filmsService.remove(+id);
+  @Get('/:film_id')
+  findOne(@Param('film_id', ParseIntPipe) rideId: number) {
+    return this.filmsService.findOne(rideId);
   }
 }

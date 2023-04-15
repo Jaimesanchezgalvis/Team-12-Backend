@@ -12,9 +12,13 @@ import { Category } from './entities/Category.entity';
 import { Film } from './entities/Film.entity';
 import { Gender } from './entities/Gender.entity';
 import { Rating } from './entities/Ratings,entity';
+import { CommonModule } from '@app/common/common.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Category, Film, Gender, Rating])],
+  imports: [
+    TypeOrmModule.forFeature([Category, Film, Gender, Rating]),
+    CommonModule,
+  ],
   controllers: [
     FilmsController,
     CategoriesController,

@@ -3,13 +3,14 @@ import { Gender } from './Gender.entity';
 import { Category } from './Category.entity';
 import { Rating } from './Ratings,entity';
 import { User } from '@app/auth/entities/User.entity';
+import { AbstractEntity } from '@app/common/entities/AbstractEntity.entity';
 
 @Entity('films')
-export class Film {
+export class Film extends AbstractEntity {
   @Column({ length: 200 })
   title: string;
   @Column({ nullable: true, length: 200 })
-  poster: string;
+  poster_url: string;
   @Column({ length: 100 })
   director: string;
   @Column({ type: 'date' })
