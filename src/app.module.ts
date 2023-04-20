@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import appConfig, {
+  cloudinaryConfig,
   jwtConfig,
 } from './config/app.config';
 import { DATABASE_CONFIG } from './config/constants.config';
@@ -15,7 +16,7 @@ import { FilmsModule } from './films/films.module';
 const ConfigModuleProvider = ConfigModule.forRoot({
   envFilePath: `.env.${process.env.NODE_ENV ?? 'development'}.local`,
   isGlobal: true,
-  load: [databaseConfig, appConfig, jwtConfig],
+  load: [databaseConfig, appConfig, jwtConfig, cloudinaryConfig],
   validationSchema: envValidate,
 });
 

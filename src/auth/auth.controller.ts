@@ -1,11 +1,12 @@
 import { Controller, Post, Body, Req, UseGuards, Logger } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBody } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './services/auth.service';
 import { RefreshTokenDto } from './dtos/refreshToken';
 import { SignInDto } from './dtos/signIn.dto';
 import { CreateUserDto } from './dtos/create-user.dto';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   private logger = new Logger(AuthController.name);

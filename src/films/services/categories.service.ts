@@ -22,4 +22,7 @@ export class CategoriesService {
       },
     );
   }
+  findOne(id: number) {
+    return this.categoryRepository.findOne({ where: { id } });
+  }
 }

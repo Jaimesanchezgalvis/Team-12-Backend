@@ -22,4 +22,7 @@ export class GendersService {
       },
     );
   }
+  findOne(id: number) {
+    return this.genderRepository.findOne({ where: { id } });
+  }
 }
