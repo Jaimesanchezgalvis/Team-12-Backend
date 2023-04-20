@@ -12,3 +12,7 @@ This is a challenge for project
 ## Documentation at
 
 `/api/v1/docs#/default/FilmsController_findAll`
+
+## Watch live Docs
+
+`http://52.202.2.211/api/v1/docs`
