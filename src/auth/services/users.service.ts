@@ -23,7 +23,11 @@ export class UsersService {
   }
 
   async findOne(id: number): Promise<User> {
-    return await this.userRepository.findOne({ where: { id } });
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new BadRequestException('The user not found');
+    }
+    return user;
   }
 
   async findOneForRefreshToekn(id): Promise<User> {

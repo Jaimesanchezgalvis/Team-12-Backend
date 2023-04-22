@@ -18,17 +18,24 @@ import { Film } from '../entities/Film.entity';
 import { CreateFilmDto } from '../dto/create-film.dto';
 import { FileUpload } from '@app/common/decorators/file.decorator';
 import { ApiTags } from '@nestjs/swagger';
+import { RatingsService } from '../services/ratings.service';
+import { Rating } from '../entities/Rating.entity';
+import { PaginationQuery } from '@app/common/decorators/api-query.pagination';
 
 @ApiTags('films')
 @Controller('films')
 export class FilmsController {
-  constructor(private readonly filmsService: FilmsService) {}
+  constructor(
+    private readonly filmsService: FilmsService,
+    private readonly ratingsService: RatingsService,
+  ) {}
 
   @Get()
+  @PaginationQuery()
   findAll(
     @Query(PaginationPipe) pagination: IPagination,
     @Query('query', new SearchQueryPipe(Film)) where: object,
-  ): any {
+  ) {
     return this.filmsService.findAll(pagination, where);
   }
   @Get('/:film_id')
@@ -50,5 +57,15 @@ export class FilmsController {
   @HttpCode(204)
   async delete(@Param('film_id', ParseIntPipe) id: number) {
     await this.filmsService.delete(id);
+  }
+
+  @Get('/:film_id/ratings')
+  @PaginationQuery()
+  async findAllRates(
+    @Query(PaginationPipe) pagination: IPagination,
+    @Query('query', new SearchQueryPipe(Rating)) where: object[],
+    @Param('film_id', ParseIntPipe) filmId: number,
+  ) {
+    return await this.ratingsService.findAll(pagination, filmId, where);
   }
 }

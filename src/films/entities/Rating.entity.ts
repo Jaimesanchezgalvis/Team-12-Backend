@@ -5,7 +5,8 @@ import { User } from '@app/auth/entities/User.entity';
 
 @Entity('ratings')
 export class Rating extends AbstractEntity {
-  @Column({ type: 'int8' })
+  static fieldsForQuery = ['comment'];
+  @Column({ type: 'decimal' })
   rating: number;
   @Column({ type: 'text', nullable: true })
   comment: string;

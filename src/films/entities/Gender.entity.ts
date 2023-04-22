@@ -3,6 +3,7 @@ import { Column, Entity, OneToMany } from 'typeorm';
 import { Film } from '@app/films/entities/Film.entity';
 @Entity('genders')
 export class Gender extends AbstractEntity {
+  static fieldsForQuery = ['name'];
   @Column({ length: 100 })
   name: string;
 

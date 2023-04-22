@@ -1,5 +1,5 @@
 import { PaginationService } from '@app/common/services/pagination.service';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Category } from '../entities/Category.entity';
 import { Repository } from 'typeorm';
@@ -13,16 +13,21 @@ export class CategoriesService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  findAll(page: IPagination) {
+  findAll(page: IPagination, where: object[]) {
     return this.paginationService.paginate<Category>(
       this.categoryRepository,
       page,
       {
         select: ['id', 'name'],
+        where
       },
     );
   }
-  findOne(id: number) {
-    return this.categoryRepository.findOne({ where: { id } });
+  async findOne(id: number) {
+    const category = this.categoryRepository.findOne({ where: { id } });
+    if (!category) {
+      throw new BadRequestException('The category not found');
+    }
+    return category;
   }
 }

@@ -16,3 +16,6 @@ This is a challenge for project
 ## Watch live Docs
 
 `http://52.202.2.211/api/v1/docs`
+
+##
+`sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' <id>` inspect ip of container

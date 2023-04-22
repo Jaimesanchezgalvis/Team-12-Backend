@@ -27,9 +27,10 @@ export class FilmsService {
     private readonly filmRepository: Repository<Film>,
   ) {}
 
-  findAll(page: IPagination, where: object) {
+  async findAll(page: IPagination, where: object) {
     return this.paginationService.paginate<Film>(this.filmRepository, page, {
       relations: ['category', 'gender', 'user'],
+
       where,
     });
   }
@@ -47,17 +48,8 @@ export class FilmsService {
 
   async create(userId: number, data: CreateFilmDto, image: Buffer) {
     const gender = await this.genderyService.findOne(data.genderId);
-    if (!gender) {
-      throw new BadRequestException('The gender not found');
-    }
     const category = await this.categoryService.findOne(data.categoryId);
-    if (!category) {
-      throw new BadRequestException('The category not found');
-    }
     const user = await this.userService.findOne(userId);
-    if (!user) {
-      throw new BadRequestException('The user not found');
-    }
     const { title, sinopsis, director, language, release_date } = data;
     const posterUrl = await this.cloudinaryService.uploadImageAndGetUrl(image);
     const film = new Film();
