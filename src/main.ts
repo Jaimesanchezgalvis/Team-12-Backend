@@ -1,4 +1,4 @@
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger';
@@ -14,6 +14,7 @@ const configForDevDatabase = () => {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   const config = app.get<IAppConfig>(ConfigService);
   if (process.env.NODE_ENV === DEV_KEY) {
     configForDevDatabase();
