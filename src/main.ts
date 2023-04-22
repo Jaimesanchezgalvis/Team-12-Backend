@@ -14,11 +14,10 @@ const configForDevDatabase = () => {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors();
   const config = app.get<IAppConfig>(ConfigService);
 
   app.enableCors({
-    origin: '*'
+    origin: '*',
   });
 
   if (process.env.NODE_ENV === DEV_KEY) {
