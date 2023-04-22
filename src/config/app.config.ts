@@ -24,7 +24,7 @@ export default registerAs(APP_CONFIG, () => ({
 
 export const defaultPagination = {
   limit: 100,
-  page: 1,
+  offset: 1,
 };
 
 export const jwtConfig = registerAs(

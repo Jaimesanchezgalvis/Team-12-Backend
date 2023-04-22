@@ -7,7 +7,7 @@ import { ILike } from 'typeorm';
 export class SearchQueryPipe implements PipeTransform {
   constructor(readonly typeModel: IModel) {}
   transform(value: string, metadata: ArgumentMetadata) {
-    let where = {};
+    let where = [];
     if (isString(value) && !!value) {
       where = this.typeModel.fieldsForQuery.map((key) => {
         if (key.includes('.')) {

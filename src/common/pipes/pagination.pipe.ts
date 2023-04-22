@@ -9,7 +9,7 @@ export class PaginationPipe implements PipeTransform {
 
     try {
       const limit = Number(value?.limit) || defaultValue.limit;
-      const page = Number(value?.page) || defaultValue.page;
+      const page = Number(value?.offset) || defaultValue.offset;
       if (limit > defaultValue.limit) {
         throw new ForbiddenException('limit value is too big');
       }

@@ -1,5 +1,5 @@
 import { PaginationService } from '@app/common/services/pagination.service';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Gender } from '../entities/Gender.entity';
 import { IPagination } from '@app/common/interfaces/pagination.interface';
@@ -13,16 +13,21 @@ export class GendersService {
     private readonly genderRepository: Repository<Gender>,
   ) {}
 
-  findAll(page: IPagination) {
+  findAll(page: IPagination, where: object[]) {
     return this.paginationService.paginate<Gender>(
       this.genderRepository,
       page,
       {
         select: ['id', 'name'],
+        where,
       },
     );
   }
-  findOne(id: number) {
-    return this.genderRepository.findOne({ where: { id } });
+  async findOne(id: number) {
+    const gender = await this.genderRepository.findOne({ where: { id } });
+    if (!gender) {
+      throw new BadRequestException('The gender not found');
+    }
+    return gender;
   }
 }
